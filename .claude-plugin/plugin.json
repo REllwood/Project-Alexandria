@@ -1,0 +1,18 @@
+{
+  "name": "alexandria",
+  "version": "0.1.0",
+  "description": "Alexandria \u2014 a library for everything you know about every client. Build and maintain detailed per-client knowledge bases in Obsidian from documents, folders, code repos, PDFs, emails, and meeting notes. Ask Alex; it cites the notes.",
+  "author": {
+    "name": "rhysellwood"
+  },
+  "license": "MIT",
+  "keywords": [
+    "obsidian",
+    "knowledge-base",
+    "wiki",
+    "rag",
+    "codebase",
+    "documentation",
+    "second-brain"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "alexandria-marketplace",
+  "owner": {
+    "name": "rhysellwood"
+  },
+  "metadata": {
+    "description": "Alexandria \u2014 per-client knowledge bases in Obsidian, for Claude Code and Codex.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "alexandria",
+      "source": "./",
+      "description": "Build and maintain detailed per-client Obsidian knowledge bases from documents, folders, code repos, PDFs, and meeting notes."
+    }
+  ]
+}
