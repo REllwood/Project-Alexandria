@@ -115,21 +115,17 @@ Full detail: `[skills/kb/references/vault-layout.md](skills/kb/references/vault-
 
 Seven dependency-free Python helpers (copied into every vault's `.kb/bin/`):
 
-- `**kb_init.py**` — scaffold vaults, clients, KBs; write Obsidian config + templates.
-- `**kb_manifest.py**` — hash sources, detect new/changed/deleted, record which notes each produced.
-- `**kb_repo_scan.py**` — analyze a repo: languages, structure, entry points, dependencies, import graph, Git contributors/hotspots/ownership.
-- `**kb_extract.py**` — read `.docx` / `.pptx` / `.xlsx` / `.eml` / `.txt` to text (stdlib, using `textutil`/`pandoc` when present).
-- `**kb_doctor.py**` — preflight health check with one-line fixes.
-- `**kb_review.py**` — generate the "Needs your attention" review note.
-- `**kb_actions.py**` — roll up open action items by owner / due date into `Action Items.md`.
+- `kb_init.py` — scaffold vaults, clients, KBs; write Obsidian config + templates.
+- `kb_manifest.py` — hash sources, detect new/changed/deleted, record which notes each produced.
+- `kb_repo_scan.py` — analyze a repo: languages, structure, entry points, dependencies, import graph, Git contributors/hotspots/ownership.
+- `kb_extract.py` — read `.docx` / `.pptx` / `.xlsx` / `.eml` / `.txt` to text (stdlib, using `textutil`/`pandoc` when present).
+- `kb_doctor.py` — preflight health check with one-line fixes.
+- `kb_review.py` — generate the "Needs your attention" review note.
+- `kb_actions.py` — roll up open action items by owner / due date into `Action Items.md`.
 
 **23 composable skills** (the `kb` router + focused capabilities — `kb-ingest`, `kb-ask`, `kb-compose`, `kb-architecture`, `kb-people`, `kb-decisions`, `kb-actions`, `kb-update`, `kb-lint`, `kb-doctor`, …) orchestrate reading sources, writing cross-linked notes, and the post-write protocol (index → log → hot cache → provenance → commit). Skills call each other and fan out background subagents for big batches.
 
 ## Configuration
 
 Per-vault settings in `.kb/config.json`: `git_autocommit`, `codebase_depth` (`architecture` | `deep` | `light`), `autoresearch`, `scheduled_update`. Scheduling options (`/loop`, `schedule`, cron) in `[skills/kb/references/scheduling.md](skills/kb/references/scheduling.md)`.
-
-## Notes
-
-- Sources in `.raw/` are versioned by default. If a KB holds large or sensitive files, add `.raw/` to `.gitignore`.
 
