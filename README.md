@@ -21,39 +21,41 @@ Works in both **Claude Code** and **Codex CLI** (Agent Skills standard). Retriev
 
 ## Install
 
-Portable: only requires **Python 3** (standard library — no `pip install`) plus Claude Code and/or Codex. The two tools discover extensions differently, so they install differently. To use it on **another machine**, get this folder there first (`git clone …` or copy the `alexandria/` folder), keep it in place, then:
+Needs **Python 3** (standard library — nothing to `pip install`) plus one of **Claude Code**, **Codex**, or **Cursor**. The Claude Code plugin installs straight from GitHub and is the **full experience** (skills + commands + parallel subagents); for **Codex** and **Cursor**, clone the repo first (`git clone https://github.com/REllwood/Project-Alexandria`) and keep it in place — they read the skills from your clone.
 
-### Claude desktop app (Cowork) — project-level
+### Claude Code — plugin (full experience)
 
-The desktop app has **no `/plugin` command** and manages its built-in extensions through the app, so install per **project**: drop the skills/commands/agents into a working folder's `.claude/`:
-
-```bash
-bash bin/install-project.sh /path/to/your/working-folder   # default: current folder
-```
-
-Then open that folder in the app, start a fresh session, and type `**/alex**`. Re-run it for each project you want it in (skills load from the project you're working in). This also copies the scaffolder to `~/.alexandria/`.
-
-### Claude Code CLI (terminal) — local plugin
-
-If you use the `claude` CLI, the plugin route gives an all-projects install:
+In a Claude Code session:
 
 ```
-/plugin marketplace add /path/to/alexandria
+/plugin marketplace add REllwood/Project-Alexandria
 /plugin                       # open the menu → install "alexandria", then enable it
 ```
 
-(The `/plugin` menu avoids version-specific install syntax.) Then `bash bin/install.sh claude` once and type `**/alex**`.
+Then type **`/alex`**. The plugin bundles the skills, commands, subagents, and helper scripts — no `install.sh` needed.
 
-### Codex CLI / OpenCode — symlink (discovered recursively)
+> **Claude desktop app (Cowork)** has no `/plugin` command, so install per project instead: `bash bin/install-project.sh /path/to/your/working-folder` (symlinks skills/commands/agents into that folder's `.claude/`), then open it and type **`/alex`**.
+
+### Codex / OpenCode — Agent Skills (recursive discovery)
 
 ```bash
-bash bin/install.sh codex     # does the symlink + scaffolder copy, or manually:
+bash bin/install.sh codex     # symlink + scaffolder copy, or manually:
 ln -s "$(pwd)/skills" ~/.codex/skills/alexandria
 ```
 
-Then say **"set up a knowledge base"**.
+Then say **"ask Alex to set up a knowledge base"** — Codex uses trigger phrases, not slash commands (its older *prompts* are deprecated; skills use the same `SKILL.md` format).
 
-> `bin/install.sh` symlinks for Codex and prints the plugin steps for Claude Code; it also copies a stable scaffolder to `~/.alexandria/bin/`. The package install is once per machine. Vaults themselves are fully portable — each carries its runtime scripts in `.kb/bin/`, so a vault made on one machine works anywhere.
+### Cursor — front-door command
+
+Cursor doesn't auto-discover Agent Skills, so this installs a `/alex` command that routes by reading the skills in your clone:
+
+```bash
+bash bin/install.sh cursor    # writes ~/.cursor/commands/alex.md (pointing at this clone)
+```
+
+Then type **`/alex`** in Cursor. Keep the cloned `alexandria/` folder in place — the command reads the skills from it.
+
+> Each package install is once per machine; vaults themselves are fully portable — each carries its runtime scripts in `.kb/bin/`, so a vault made on one machine works anywhere. Verify any time with **`/kb-doctor`** or `bash bin/selftest.sh`.
 
 ## Quickstart
 

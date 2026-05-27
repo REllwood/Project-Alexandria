@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# install.sh — make alexandria discoverable by Codex and/or Claude Code.
+# install.sh — make alexandria discoverable by Claude Code, Codex, and/or Cursor.
 #
-#   bash bin/install.sh [codex|claude|all]   (default: all)
+#   bash bin/install.sh [codex|claude|cursor|all]   (default: all)
 #
 # Codex / OpenCode discover skills recursively under ~/.codex/skills, so we
 # symlink the whole skills/ dir there.
@@ -27,11 +27,36 @@ install_codex() {
 }
 
 install_claude() {
-  echo "Claude Code (install as a local plugin — bundles all skills + commands + agents):"
+  echo "Claude Code (install as a plugin — bundles all skills + commands + agents):"
   echo "  In your Claude Code session, run:"
-  echo "    /plugin marketplace add $PKG"
+  echo "    /plugin marketplace add REllwood/Project-Alexandria   # (or '$PKG' for this local clone)"
   echo "    /plugin                         # open the menu → install 'alexandria', then enable it"
   echo "  (using the /plugin menu avoids version-specific install syntax)"
+}
+
+install_cursor() {
+  echo "Cursor (front-door /alex command — reads the skills from this clone):"
+  mkdir -p "$HOME/.cursor/commands"
+  cat > "$HOME/.cursor/commands/alex.md" <<EOF
+# /alex — Alexandria knowledge base
+
+You are **Alex**, the librarian for the Alexandria knowledge base — you've read
+every client's documents, meetings, and decisions so the user doesn't have to.
+
+The Alexandria skills live in this folder:
+  $SKILLS
+
+- If the user asked a **question**, follow \`$SKILLS/kb-ask/SKILL.md\` (confirm the
+  client, then answer with citations to the notes — never invent).
+- Otherwise (set up a vault, ingest sources, status, people, architecture,
+  decisions, briefs, actions, export, …) follow \`$SKILLS/kb/SKILL.md\` (the router)
+  and route to the right skill under \`$SKILLS\`.
+
+Helper scripts (standard-library Python) are at \`$SKILLS/kb/scripts/\` and get copied
+into each vault's \`.kb/bin/\`. Resolve the vault via ~/.alexandria/vaults.json or a
+parent .kb/config.json.
+EOF
+  echo "  wrote $HOME/.cursor/commands/alex.md  ->  reads $SKILLS"
 }
 
 install_runtime() {
@@ -46,15 +71,17 @@ install_runtime() {
 case "$TARGET" in
   codex)  install_codex ;;
   claude) install_claude ;;
-  all)    install_codex; echo; install_claude ;;
-  *) echo "usage: bash bin/install.sh [codex|claude|all]"; exit 1 ;;
+  cursor) install_cursor ;;
+  all)    install_codex; echo; install_claude; echo; install_cursor ;;
+  *) echo "usage: bash bin/install.sh [codex|claude|cursor|all]"; exit 1 ;;
 esac
 echo; install_runtime
 
 cat <<EOF
 
 Done. Next:
-  • Claude Code: run the /plugin steps above, then type  /kb  to scaffold a vault.
-  • Codex CLI:   say  "set up a knowledge base"  to trigger the kb skill.
-The first /kb run creates the vault and copies runtime scripts into <vault>/.kb/bin/.
+  • Claude Code: run the /plugin steps above, then type  /alex  to scaffold a vault.
+  • Codex CLI:   say  "ask Alex to set up a knowledge base".
+  • Cursor:      type  /alex  in chat.
+The first run creates the vault and copies runtime scripts into <vault>/.kb/bin/.
 EOF
