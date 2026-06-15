@@ -10,7 +10,7 @@ Full procedure, Mermaid patterns, and depth levels: `references/codebase-pipelin
 ## Run
 1. Scan: `python3 "<vault>/.kb/bin/kb_repo_scan.py" --path "<repo>" --out "<KB>/.raw/_scan-<repo>.json"`, then `kb_manifest.py record-repo …`.
 2. Read the repo's README/`docs`/ADRs for intent (the scan gives structure; prose gives why).
-3. Create notes (depth = `.kb/config.json` `codebase_depth`): `Architecture/<repo>-overview.md`, `Architecture/<repo>-dependencies.md` (Mermaid from `internal_edges`), and `Architecture/<module>.md` per significant top-level dir.
+3. Create notes (depth = `.kb/config.json` `codebase_depth`), Title-Case capitalised filenames: `Architecture/<Repo> Overview.md`, `Architecture/<Repo> Dependencies.md` (Mermaid from `internal_edges`), and `Architecture/<Module>.md` per significant top-level dir.
 4. Engineers + ownership → invoke **kb-people**: `role: engineer` notes from `contributors`; an ownership map linking engineers ↔ the modules they edit most.
 
 ## Multiple repos / batch

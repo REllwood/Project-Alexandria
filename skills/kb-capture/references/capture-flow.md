@@ -4,7 +4,7 @@ Goal: the user is mid-conversation, has some content, and wants it in a vault wi
 
 ## Detecting the content
 - **Uploaded/attached file**: the harness gives you a path (often a temp path). Treat that path as the source; copy it into the chosen `.raw/`.
-- **Pasted text**: capture the block the user means. Ask for a title if none is obvious; save as `<slug>.md`.
+- **Pasted text**: capture the block the user means. Ask for a title if none is obvious; save as `<Title>.md` (Title Case, capitalised).
 - **A path or URL in their message**: use it directly (URL → web source).
 - **"Save what we just figured out"**: extract the relevant portion of the conversation (a decision, a spec) into a `.md` — don't dump the whole transcript.
 

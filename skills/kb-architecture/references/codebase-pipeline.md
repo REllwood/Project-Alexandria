@@ -13,10 +13,10 @@ Always read the repo's `README` and any `docs/`, `ARCHITECTURE.md`, or ADRs too 
 
 ## 2. Notes to create (depth = `codebase_depth` in config)
 
-### `Architecture/<repo>-overview.md` (always)
+### `Architecture/<Repo> Overview.md` (always — Title-Case capitalised filename)
 What the system is and does (from README + entry points), primary languages (`languages`), the top-level layout (`structure`), how to run it (`entry_points`), and external dependencies (`dependencies`). Link the repo `remote`/path. Note `loc_total` and `branch`/`head` for reference.
 
-### `Architecture/<repo>-dependencies.md` (always)
+### `Architecture/<Repo> Dependencies.md` (always)
 A Mermaid graph from `internal_edges`. Each edge `{from,to,weight}` becomes an arrow; use weight to annotate. Example:
 ````markdown
 ```mermaid
@@ -28,7 +28,7 @@ graph LR
 ````
 Also list external dependencies grouped by manifest file. Flag cycles if `internal_edges` show mutual arrows.
 
-### `Architecture/<module>.md` — one per significant top-level dir (always at `architecture`+ depth)
+### `Architecture/<Module>.md` — one per significant top-level dir (always at `architecture`+ depth)
 Responsibilities (infer from name/`role` + contents), what it imports and what imports it (from `internal_edges`), key files, and **owners** (link the engineers from `ownership[dir]`). Use the `architecture.md` template.
 
 ### Deep (`codebase_depth: deep`)

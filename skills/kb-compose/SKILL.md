@@ -22,7 +22,7 @@ Pull only what the message needs from the KB: the recipient's role/context (`Peo
 - **Do not put `[[wikilinks]]` in the outbound text** (the recipient can't use them). Instead append a small **"Sources (for your reference)"** footer listing the KB notes you drew on — for the sender to verify, to be deleted before sending.
 
 ## 5. Offer to save / hand off
-Offer to: **save the draft** into the KB as a comms note (`Sources/comms/<date>-<slug>.md`, `kind: email`/`message`, linked to recipients + topic) so it's part of the record; and/or **export** via kb-export. **kb-compose drafts — it never sends.**
+Offer to: **save the draft** into the KB as a comms note (`Sources/Comms/<Date> <Title>.md`, `kind: email`/`message`, linked to recipients + topic) so it's part of the record; and/or **export** via kb-export. **kb-compose drafts — it never sends.**
 
 ## Composition
 Uses kb-ask / kb-query retrieval (client-scoped); optional brand-voice for tone; can save back via the kb-ingest comms-note routine or export via kb-export.

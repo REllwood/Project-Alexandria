@@ -12,7 +12,7 @@ Do:
 1. Form 1–2 focused queries; search.
 2. Fetch up to 3 credible sources (prefer official/primary, then reputable secondary; avoid content farms).
 3. Synthesize an answer **with inline citations** to the URLs used.
-4. File it as `<KB>/Sources/<slug>.md` tagged `#researched` (frontmatter `type: source`, `kind: web`), and create/update the related `Concepts/`·`Entities/` notes.
+4. File it as `<KB>/Sources/<Title>.md` (Title Case filename, never a slug) tagged `#researched` (frontmatter `type: source`, `kind: web`), and create/update the related `Concepts/`·`Entities/` notes.
 5. In `<KB>/questions.md`, resolve the matching item: replace it with a link to the answer note (or, if unresolved, mark it "researched, unresolved" with what you found).
 
 Honesty: never present unsourced claims as fact. If sources conflict, record both with a `> [!contradiction]` callout. Stay within ~3 fetched pages for your question.

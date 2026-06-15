@@ -25,5 +25,11 @@ batch build-spec is derived from it. This is what keeps the output trustworthy i
 - Mark uncertainty explicitly; never present a guess as fact.
 - Keep the `Overview` (status/next) and `_review` (needs-attention) current so the KB reflects reality.
 
+## 6. Named with capitals — human, never a slug
+- **Every folder, note filename, and title starts with a capital letter — never lowercase, no matter what.**
+- Name each note by its real **Title Case** human name (`Payments Service`, `Q3 Kickoff Deck`) — *not* a lowercase-hyphenated slug (`payments-service`). The filename is what shows in the graph, file explorer, and Canvas, so it must read like a title. The filename = the note's title.
+- Keep spaces; remove only filesystem-illegal characters (`\ / : * ? " < > |`). **Preserve** existing capitalisation of acronyms / product names (IBM, iOS, eBay) — don't lowercase or title-mangle them.
+- **Exempt — leave their fixed lowercase names:** hidden system/working files & folders only — `.raw/`, `.kb/`, `.obsidian/`, `_index.md`, `_review.md`, `_client.md`, `hot.md`, `log.md`, `questions.md`, `glossary.md`. These are plumbing (most are hidden); their *displayed titles* are already capitalised.
+
 ## The test
 Before finishing a note, ask: **would a new account manager / engineer trust this and act on it without re-reading the source?** If not, it isn't done.

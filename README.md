@@ -127,5 +127,5 @@ Seven dependency-free Python helpers (copied into every vault's `.kb/bin/`):
 
 ## Configuration
 
-Per-vault settings in `.kb/config.json`: `git_autocommit`, `codebase_depth` (`architecture` | `deep` | `light`), `autoresearch`, `scheduled_update`. Scheduling options (`/loop`, `schedule`, cron) in `[skills/kb/references/scheduling.md](skills/kb/references/scheduling.md)`.
+Per-vault settings in `.kb/config.json`: `git_autocommit`, `codebase_depth` (`architecture` | `deep` | `light`), `token_mode` (`standard` | `lean` — **lean is the low-token mode**: tighter notes and bounded reads; cheaper, a bit less rich, still grounded + cited), `autoresearch`, `scheduled_update`. Details: [skills/kb/references/token-modes.md](skills/kb/references/token-modes.md); scheduling options (`/loop`, `schedule`, cron) in [skills/kb/references/scheduling.md](skills/kb/references/scheduling.md).
 

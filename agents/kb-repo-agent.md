@@ -12,9 +12,9 @@ Do:
 1. Scan: `python3 "<vault>/.kb/bin/kb_repo_scan.py" --path "<repo>" --out "<KB>/.raw/_scan-<repo>.json"`. Read the JSON.
 2. Read the repo's `README` / `docs` / `ARCHITECTURE.md` for intent.
 3. Create (respect `<vault>/.kb/config.json` `codebase_depth`):
-   - `Architecture/<repo>-overview.md` — purpose, languages, structure, entry points, external dependencies, branch/head, notable hotspots.
-   - `Architecture/<repo>-dependencies.md` — a Mermaid graph from `internal_edges`; list external deps by manifest file; flag cycles.
-   - `Architecture/<module>.md` per significant top-level dir (responsibilities, imports/imported-by, key files, owners).
+   - `Architecture/<Repo> Overview.md` — purpose, languages, structure, entry points, external dependencies, branch/head, notable hotspots.
+   - `Architecture/<Repo> Dependencies.md` — a Mermaid graph from `internal_edges`; list external deps by manifest file; flag cycles.
+   - `Architecture/<Module>.md` per significant top-level dir (responsibilities, imports/imported-by, key files, owners). Title-Case capitalised filenames (never lowercase).
 4. **Engineers & ownership**: from `contributors`, create/update client-level `People/<Name>.md` with `role: engineer` (commit counts, active date range); from `ownership`, write a "who owns what" section linking engineers ↔ modules. Dedupe authors by name/email.
 5. Register: `python3 "<vault>/.kb/bin/kb_manifest.py" record-repo --kb "<KB dir>" --name "<repo>" --path "<repo>"`.
 

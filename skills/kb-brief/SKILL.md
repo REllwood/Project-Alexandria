@@ -16,7 +16,7 @@ Resolve vault + scope (client / KB / topic). Brief shapes and section templates:
 3. **Cite** the notes used. Flag gaps and offer **kb-research**.
 
 ## Output
-Default: a chat answer. On request, save as `<KB>/briefs/<slug>.md` and/or hand to **kb-export** for docx/pdf.
+Default: a chat answer. On request, save as `<KB>/Briefs/<Title>.md` (Title Case, capitalised) and/or hand to **kb-export** for docx/pdf.
 
 ## Composition
 Uses kb-query retrieval; reads kb-people / kb-architecture / kb-decisions / kb-timeline; feeds kb-onboard, kb-export.

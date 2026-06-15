@@ -10,11 +10,15 @@ Answers come from the vault, with citations to specific notes. If the vault does
 ## Retrieval path (cheap → specific)
 Resolve the vault root and the relevant scope (a KB, a client, or all clients).
 
+**Shortcut — search-first for named things.** If the question names a specific person / system / decision / meeting, skip the walk: `grep` the KB (and `People/`) for the name and open the matching note(s) directly. The index walk below is for open-ended questions ("what's the status", "what do we know about…").
+
 1. **Hot cache** — read the KB's `hot.md` first for recent working context.
 2. **Index** — read the KB's `_index.md` (Map of Content) to locate relevant areas.
 3. **Drill** — open the specific notes the index points to. Follow `[[wikilinks]]` outward as needed.
 4. **Search** — if the index does not surface it, `grep`/`glob` the KB folder for keywords, frontmatter (`type:`, `role:`), and `[[links]]`.
 5. **Synthesize** — answer concisely, then cite the notes used as clickable links (e.g. `[[Clients/Acme/Billing-Platform/Sources/kickoff]]`).
+
+**Read discipline (every mode):** stop reading once the answer is grounded in the notes you've opened; never read `.raw/` originals unless a source note's summary is insufficient (and say so). In **lean** token mode (`.kb/config.json`, or the user says "answer lean"): at most ~5 notes / 1 link-hop, output = answer + citations only — see `../kb/references/token-modes.md`.
 
 ## People & stakeholder questions
 People notes live at the client level: `Clients/<Client>/People/`.

@@ -8,12 +8,12 @@ description: Create Obsidian Canvas visual boards for a knowledge base — an ar
 An Obsidian Canvas is a `.canvas` JSON file. Node/edge/group format + layout helpers: `references/canvas-spec.md`.
 
 ## Boards
-- **Architecture** — one node per `Architecture/<module>` note; edges from the repo scan's `internal_edges`. Lay out left→right by dependency depth.
-- **People / stakeholders** — nodes for `People/` notes grouped by role; link to the KBs they touch.
-- **KB overview** — pin `_index.md`, key sources, decisions, and the architecture board into labeled zones.
+- **KB overview** — labeled zones (⭐ Start here · 📚 Sources · ⚖️ Decisions · 👥 People · ❓ Track) of **curated** links to the key notes (Overview, _index, top sources/decisions/people). Pin the important few, not everything.
+- **People / stakeholders** — one card per `People/` person, grouped by role; optional edges for reporting lines.
+- **Architecture** — one node per `Architecture/<Module>` note; edges from the repo scan's `internal_edges`; laid out left→right by dependency depth.
 
 ## Build
-Write `<KB>/Canvas/<name>.canvas` as **valid Canvas JSON** (file-link nodes + groups + edges). Validate it parses (`python3 -c "import json,sys;json.load(open(...))"`). Keep node coordinates on a grid so it opens tidy.
+Write `<KB>/Canvas/<name>.canvas` as **valid Canvas JSON**. Default each card to a **`text` node** with a wikilink + one short line — `**[[Note|Title]]**\nshort line` — NOT a file embed: embeds render the title two or three times, truncate content, and show ugly slugs. Use `file` embeds only when you truly want a live note preview (and size ≥ 420×320). Size and space nodes with the **layout math** in `references/canvas-spec.md` (card 260×90, row step +60, group sized to contain its cards) so nothing overlaps or truncates, tint each zone's group to the KB note-type colour, then validate it parses (`python3 -c "import json;json.load(open(...))"`) and eyeball spacing.
 
 ## Finish + composition
 Link the canvas from `_index.md`. Post-write protocol. Reads kb-architecture and kb-people output.

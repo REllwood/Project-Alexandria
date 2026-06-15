@@ -10,7 +10,7 @@ Prerequisite: resolve the vault root and target KB (kb skill conventions). No ta
 ## 0. Confirm with the user first (clickable options)
 Before building, use the **AskUserQuestion** tool to confirm, each with a recommended default:
 - **Which client / project KB** — list existing (`Clients/*/*`) plus "+ new".
-- **Scope / depth** — e.g. *backbone first* (core docs → people, overview, concepts, decisions) vs *everything* (also every meeting note → full timeline) vs *let me pick*.
+- **Scope / depth** — e.g. *backbone first* (core docs → people, overview, concepts, decisions) vs *everything* (also every meeting note → full timeline) vs *let me pick*. If the vault's `token_mode` is `lean` (`.kb/config.json`), default to *backbone first* and the tighter note shapes in `../kb/references/token-modes.md`.
 - **Large / binary files** — for big folders, confirm skipping large media (e.g. video) that can't be read; reference them by path instead.
 Proceed only once confirmed — this keeps sources out of the wrong KB and avoids surprising the user with a huge run. After building, prompt about Obsidian plugins if not already done (see kb-setup).
 
@@ -38,7 +38,7 @@ Process only `new`/`changed`. Skip `unchanged`.
 
 ### Documents / web / PDFs — per-source routine
 Read the source fully, then:
-1. **Source note** — `Sources/<slug>.md` from the `source.md` template; fill `source_file`, `source_hash` (from status), `kind`, `client`, `project`. Body: tight summary + key points. This is the citable anchor.
+1. **Source note** — `Sources/<Title>.md` from the `source.md` template (name it the source's real **Title Case** title, never a lowercase slug — see `../kb/references/quality.md` §6); fill `source_file`, `source_hash` (from status), `kind`, `client`, `project`. Body: tight summary + key points. This is the citable anchor.
 2. **Concepts / entities** — create or **merge** `Concepts/` and `Entities/` notes; link back to the source.
 3. **People** → invoke **kb-people** for this source (extract, resolve, link).
 4. **Decisions** → invoke **kb-decisions** for any decision/commitment found.
@@ -55,7 +55,7 @@ Route to **kb-architecture** (scan → overview, module map, Mermaid dependency 
 For a folder or any multi-source batch, don't grind through it serially — fan out, the hand-holdy build:
 1. **Stage** all readable sources into `.raw/` (reference huge binaries like video by path, don't copy). Use `.kb/bin/kb_extract.py` for docx/pptx/xlsx/txt; the Read tool for PDFs.
 2. **Write a build-spec** to `<vault>/.kb/build-spec.md`: house style (frontmatter + linking), the canonical people-name list, and the RETURN format — derived from the **quality bar** (`../kb/references/quality.md`: grounded + cited, substantive, densely linked, honest, never invented). Every agent reads it so output is consistent, valuable, and conflict-free.
-3. **Partition** sources into batches (~8–12 each) by type (interviews / decks / meetings / code).
+3. **Partition** sources into batches by type (interviews / decks / meetings / code) — ~8–12 each in `standard` token mode, ~15–20 in `lean` (fewer agents = less repeated context; note the mode in the build-spec so agents write to the right depth).
 4. **Spawn one background subagent per batch** (`kb-source-agent`, `kb-repo-agent`, or general-purpose carrying the spec) so the build runs in parallel. Each agent creates ONLY its own notes (`Sources/`, `Meetings/`) and **returns** structured data (decisions, questions, glossary, new people, relationships) — it must NOT edit shared files. Tell the user what you launched; let it run.
 
 ## 5. Reconcile (orchestrator-owned, after agents return)

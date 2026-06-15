@@ -53,5 +53,6 @@ One vault. One folder per client. One or more project KBs per client.
 ```
 
 ## Naming
-- Folders/files use the human name with spaces collapsed and unsafe characters removed (`kb_init` slugging). Wikilinks use the note's path or basename.
-- Meeting files start with the ISO date: `2026-05-25-kickoff.md`.
+- Folders/files use the human name in **Title Case, always starting with a capital** — spaces kept, filesystem-unsafe characters removed; **never lowercase slugs**. `kb_init` capitalises client/KB folders; agents name notes by their title (see `quality.md` §6). Wikilinks use the note's path or basename.
+- Meeting files start with the ISO date, then a Title-Case topic: `2026-05-25 Kickoff.md`.
+- Exempt (fixed lowercase): hidden system/working files — `.raw/`, `.kb/`, `_index`, `_review`, `_client`, `hot`, `log`, `questions`, `glossary`.

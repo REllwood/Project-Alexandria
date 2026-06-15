@@ -8,7 +8,7 @@ description: Capture and maintain decision records (ADR-style) in a knowledge ba
 Resolve vault + KB. Decisions live in `Decisions/` using the `decision.md` template (`status`: proposed / accepted / superseded / rejected).
 
 ## Create
-For each decision (from a source, a meeting, or stated directly by the user): `Decisions/<slug>.md` with **context**, **decision**, **consequences**, and **alternatives considered**. Set `deciders` (link people via **kb-people**) and `date`. Link the originating source/meeting.
+For each decision (from a source, a meeting, or stated directly by the user): `Decisions/<Title>.md` (Title Case, capitalised — never a lowercase slug) with **context**, **decision**, **consequences**, and **alternatives considered**. Set `deciders` (link people via **kb-people**) and `date`. Link the originating source/meeting.
 
 ## Maintain
 - **Supersede**: set the old note `status: superseded` and link to the replacement; the new note links back.

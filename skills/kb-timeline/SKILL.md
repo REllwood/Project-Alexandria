@@ -5,7 +5,7 @@ description: Build and maintain a chronological timeline of a project from meeti
 
 # kb-timeline — meetings & project timeline
 
-Resolve vault + KB. Meetings live in `Meetings/YYYY-MM-DD-<topic>.md` (`meeting.md` template).
+Resolve vault + KB. Meetings live in `Meetings/YYYY-MM-DD <Topic>.md` — ISO date prefix, then a **Title-Case** topic (`meeting.md` template).
 
 ## Per meeting / transcript
 Read the source, then create the dated meeting note: context, discussion, **attendees** (link each via **kb-people**), **decisions** (create via **kb-decisions**), **action items** as a task list, and open questions → `questions.md`. The ISO-dated filename + `date` frontmatter is what orders the timeline.

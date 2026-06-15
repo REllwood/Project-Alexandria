@@ -5,7 +5,7 @@ description: Scaffold and configure a new Obsidian knowledge-base vault for the 
 
 # kb-setup — create a vault
 
-1. Confirm **location + name**. Default `~/Knowledge Base`. Confirm settings (defaults: `git_autocommit` on, `codebase_depth` = architecture, `autoresearch` on). Ask before writing outside the cwd.
+1. Confirm **location + name**. Default `~/Knowledge Base`. Confirm settings (defaults: `git_autocommit` on, `codebase_depth` = architecture, `token_mode` = standard — offer `lean` for low token use: tighter notes, bounded reads, cheaper but less rich; see `../kb/references/token-modes.md` — `autoresearch` on). Ask before writing outside the cwd.
 2. Scaffold. No vault exists yet, so run the scaffolder from a package location. Prefer the stable copy that `bin/install.sh` creates; otherwise use the bundled script inside the **kb** skill (`<kb skill dir>/scripts/kb_init.py`):
    ```bash
    # preferred (created by bin/install.sh); fall back to the kb skill's scripts/kb_init.py

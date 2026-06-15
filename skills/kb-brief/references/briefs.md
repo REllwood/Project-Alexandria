@@ -28,5 +28,5 @@ Every brief is synthesized from the vault and **cites the notes used**. Keep the
 
 ## Output conventions
 - Citations as wikilinks to the exact notes (`[[…/Sources/foo]]`).
-- If saving, write to `<KB>/briefs/<slug>.md` with `type: source`? No — use `type: concept` or a dedicated `brief` tag; link from `_index.md`.
+- If saving, write to `<KB>/Briefs/<Title>.md` (Title Case) with `type: source`? No — use `type: concept` or a dedicated `brief` tag; link from `_index.md`.
 - For a polished doc, hand to kb-export (docx/pdf).

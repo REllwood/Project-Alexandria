@@ -28,6 +28,8 @@ Run the **kb-query** retrieval path **scoped to the chosen client/KB**:
 
 Answer concisely, then **cite the notes used** as clickable links. If the KB lacks the answer, say so and offer to ingest a source or run **kb-research** — never answer client questions from general knowledge.
 
+Respect the vault's **token mode** (`../kb/references/token-modes.md`): in `lean`, search-first, read ≤5 notes, and reply with answer + citations only (skip the follow-up suggestions in step 4). "Answer lean" / "go deep" from the user overrides the config for that question.
+
 ## 4. Follow-ups
 Keep the chosen client/KB in context for follow-ups (don't re-ask each turn). Suggest useful next questions.
 

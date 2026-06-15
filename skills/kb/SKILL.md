@@ -65,6 +65,9 @@ A KB is `Clients/<Client>/<Project>/`. Infer from context or the active note. If
 ## kb status
 List vaults (registry), and for the active vault list clients → KBs (`Clients/*/*/_index.md`). For each KB, run `kb_manifest.py status` to show ingested vs. pending sources, and surface counts of people, decisions, and open questions.
 
+## Token mode (read it once per session)
+`.kb/config.json` `token_mode` is `standard` (default) or `lean`. **Lean = low-token**: tighter notes at ingest, bounded reading at query (search-first, ≤5 notes, answer + citations only) — see `references/token-modes.md`. Grounding, citations, links, and provenance are never cut in either mode. A per-request "answer lean" / "go deep" overrides the config for that run.
+
 ## Shared post-write protocol (EVERY writing skill ends with this)
 After creating/changing notes in a KB:
 1. **Index** — add/refresh `[[wikilinks]]` in the KB `_index.md` (no orphans).
@@ -77,4 +80,4 @@ After creating/changing notes in a KB:
 Prefer `<vault>/.kb/bin/`. If missing (older vault), re-run this skill's bundled `scripts/kb_init.py vault --path "<vault>" --name "<name>"` (idempotent; refreshes `.kb/bin/` + config without touching notes).
 
 ## References
-- `references/vault-layout.md` · `references/frontmatter.md` · `references/dashboards.md` · `references/visuals.md` · `references/scheduling.md`
+- `references/vault-layout.md` · `references/frontmatter.md` · `references/dashboards.md` · `references/visuals.md` · `references/token-modes.md` · `references/scheduling.md`

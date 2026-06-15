@@ -88,9 +88,14 @@ def render(text, **kw):
 
 
 def slug(name):
+    """Sanitize a client/KB name into a folder name. Keeps spaces + the user's
+    casing, strips filesystem-unsafe characters, and guarantees it starts with a
+    capital (never lowercase). Only the first char is forced up, so acronyms like
+    'IBM' and names like 'iOS' are preserved (str.capitalize would ruin them)."""
     keep = "-_ "
     s = "".join(c if (c.isalnum() or c in keep) else " " for c in name).strip()
-    return " ".join(s.split())
+    s = " ".join(s.split())
+    return (s[0].upper() + s[1:]) if s else s
 
 
 # ----------------------------------------------------------- .obsidian config
@@ -125,7 +130,10 @@ CORE_PLUGINS = [
 
 def scaffold_obsidian(vault):
     od = os.path.join(vault, ".obsidian")
-    write_json(os.path.join(od, "app.json"), {
+    # Note rendering: notes carry a real `# H1` title, so turn OFF Obsidian's
+    # "inline title" (which renders the FILENAME as a heading on top) — otherwise
+    # every note (and every Canvas file-embed) shows its title twice.
+    app_cfg = {
         "alwaysUpdateLinks": True,
         "newLinkFormat": "shortest",
         "useMarkdownLinks": False,
@@ -134,7 +142,22 @@ def scaffold_obsidian(vault):
         "showUnsupportedFiles": False,
         "templateFolder": "_templates",
         "propertiesInDocument": "hidden",
-    })
+        "showInlineTitle": False,
+    }
+    app_path = os.path.join(od, "app.json")
+    if os.path.exists(app_path):
+        # Existing vault: don't clobber the user's settings, but DO repair the
+        # two keys that drive the clean-read / no-duplicate-title look.
+        try:
+            with open(app_path, encoding="utf-8") as fh:
+                existing = json.load(fh)
+            existing["showInlineTitle"] = False
+            existing.setdefault("propertiesInDocument", "hidden")
+            write_json(app_path, existing, overwrite=True)
+        except (OSError, ValueError):
+            write_json(app_path, app_cfg, overwrite=True)
+    else:
+        write_json(app_path, app_cfg)
     write_json(os.path.join(od, "appearance.json"),
                {"enabledCssSnippets": ["kb-colors"]})
     write_json(os.path.join(od, "core-plugins.json"), CORE_PLUGINS)
@@ -165,6 +188,8 @@ status: active
 created: {{date}}
 updated: {{date}}
 ---
+
+# {{title}}
 
 > [!info] Source
 > Origin: `source_file`
@@ -632,6 +657,7 @@ def cmd_vault(args):
         "created": TODAY,
         "git_autocommit": bool(args.git),
         "codebase_depth": "architecture",
+        "token_mode": "standard",
         "autoresearch": True,
         "scheduled_update": False,
         "people_scope": "client",
